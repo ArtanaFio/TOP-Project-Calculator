@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+}
+
+#doc {
+    display: flex;
+}
+
+#calc {
+    padding: 3vw;
+    background-color: slategray;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    border-bottom: 20px solid darkgrey;
+    border-right: 20px solid lightgrey;
+}
+
+#screen {
+    padding: 3em;
+    background-color: rgb(222, 245, 167);
+    box-shadow: inset -3px -3px 10px lawngreen, inset 3px 3px 20px lawngreen;
+}
+
+.all-buttons {
+    display: flex;
+    gap: 2vw;
+}
+
+#nums {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    justify-content: center;
+}
+
+#ops {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5vw;
+}
+
+.button {
+    text-align: center;
+    background: whitesmoke;
+    padding: 1em;
+    font-size: 18pt;
+    font-weight: bold;
+    border-right: 5px solid lightgray;
+    border-bottom: 5px solid darkgrey;
+}
