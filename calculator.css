@@ -17,7 +17,13 @@ body {
 }
 
 #screen {
-    padding: 3em;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 600;
+    text-align: right;
+    font-size: 36pt;
+    padding-right: 0.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
     background-color: rgb(222, 245, 167);
     box-shadow: inset -3px -3px 10px lawngreen, inset 3px 3px 20px lawngreen;
 }
@@ -27,17 +33,15 @@ body {
     gap: 2vw;
 }
 
-#nums {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5vw;
-    justify-content: center;
-}
-
+#nums,
 #ops {
     display: flex;
     flex-direction: column;
     gap: 0.5vw;
+}
+
+#nums {
+    justify-content: center;
 }
 
 .row {
@@ -47,11 +51,27 @@ body {
 }
 
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     background: whitesmoke;
-    padding: 1em;
-    font-size: 18pt;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 24pt;
     font-weight: bold;
-    border-right: 5px solid lightgray;
+    border-right: 5px solid lightgrey;
     border-bottom: 5px solid darkgrey;
+    border-top: 2px solid transparent;
+    border-left: 2px solid transparent;
+    border-radius: 10%;
+}
+
+.num {
+    width: 4vw;
+    height: 4vw;
+}
+
+.opr {
+    width: 5vw;
+    height: 3vw;
 }
