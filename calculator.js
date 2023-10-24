@@ -1,42 +1,121 @@
 const calculator = document.getElementById("calc");
-        const displayScreen = document.getElementById("screen");
-        const numberButton = document.querySelectorAll(".num");
-        const row = document.querySelectorAll(".row");
-        const operationButton = document.querySelectorAll(".opr");
-        const column = document.querySelector(".ops");
+const displayScreen = document.getElementById("screen");
+const allButtons = document.querySelector(".all-buttons");
+const allOfTheButtons = document.querySelectorAll(".button");
+const numberSection = document.getElementById("nums");
+const numberButton = document.querySelectorAll(".num");
 
-        numberButton.forEach((button) => {
-            button.addEventListener('mousedown', () => {
-                button.style.borderTop = "2px solid darkgrey"; 
-                button.style.borderLeft = "2px solid lightgrey"; 
-                button.style.borderRight = "none"; 
-                button.style.borderBottom = "none";
-            });
+const firstRow = document.querySelector(".first");
+const secondRow = document.querySelector(".second");
+const thirdRow = document.querySelector(".third");
+const fourthRow = document.querySelector(".fourth");
 
-            button.addEventListener('mouseup', () => {
-                button.style.borderTop = "none";
-                button.style.borderLeft = "none";
-                button.style.borderRight = "5px solid lightgrey";
-                button.style.borderBottom = "5px solid darkgrey";
-            })
+const oneButton= document.querySelector(".one");
+const twoButton= document.querySelector(".two");
+const threeButton= document.querySelector(".three");
+const fourButton= document.querySelector(".four");
+const fiveButton= document.querySelector(".five");
+const sixButton= document.querySelector(".six");
+const sevenButton= document.querySelector(".seven");
+const eightButton= document.querySelector(".eight");
+const nineButton= document.querySelector(".nine");
+const zeroButton= document.querySelector(".zero");
+        
+const operationButton = document.querySelectorAll(".opr");
+const column = document.getElementById("ops");
+const clearButton = document.getElementById("clear");
+const plusButton = document.getElementById("add");
+const minusButton = document.getElementById("sub");
+const multiplyButton = document.getElementById("mult");
+const divideButton = document.getElementById("divi");
+const equalButton = document.getElementById("eql");
+
+const numberArray =[];
+
+
+function pressAnyButton() {
+    allOfTheButtons.forEach((button) => {
+        button.addEventListener('mousedown', () => {
+            button.style.borderTop = "0.4vw solid darkgrey"; 
+            button.style.borderLeft = "0.4vw solid lightgrey"; 
+            button.style.borderRight = "0.4vw solid transparent"; 
+            button.style.borderBottom = "0.4vw solid transparent";
         });
 
-        operationButton.forEach((button) => {
-            button.addEventListener('mousedown', () => {
-                button.style.borderTop = "2px solid darkgrey"; 
-                button.style.borderLeft = "2px solid lightgrey"; 
-                button.style.borderRight = "none"; 
-                button.style.borderBottom = "none";
-            });
+        button.addEventListener('mouseup', () => {
+            button.style.borderTop = "0.4vw solid transparent";
+            button.style.borderLeft = "0.4vw solid transparent";
+            button.style.borderRight = "0.4vw solid lightgrey";
+            button.style.borderBottom = "0.4vw solid darkgrey";
+        })
+    });
+};
+pressAnyButton();
 
-            button.addEventListener('mouseup', () => {
-                button.style.borderTop = "none";
-                button.style.borderLeft = "none";
-                button.style.borderRight = "5px solid lightgrey";
-                button.style.borderBottom = "5px solid darkgrey";
-            })
+
+function displayNumberString() {
+    numberButton.forEach((button) => {
+        button.addEventListener('mousedown', () => {
+            numberArray.push(parseInt(button.textContent));
+            numberString = parseInt(numberArray.join(''));
+            displayScreen.textContent= numberString;
         });
+    });
+};
+displayNumberString();
 
-        //calculator.appendChild(displayScreen);
-        row.appendChild(numberButton);
-        column.appendChild(operationButton);
+// Create a function that clears the array to make a new number from a number-string
+
+
+const add = function(a, b) {
+    plusButton.addEventListener('mousedown', () => {
+        
+    });
+	//return parseInt(a) + parseInt(b);
+};
+
+const subtract = function(a, b) {
+	return parseInt(a) - parseInt(b);
+};
+
+const sum = function(arr) {
+  return arr.reduce((total, arg) => total + arg, 0);
+};
+
+const multiply = function(arr) {
+  return arr.reduce((a, b) => parseInt(a) * parseInt(b));
+};
+
+clearButton.addEventListener('click', () => {
+    numberArray.length = 0;
+    displayScreen.textContent = "0";
+    console.log("Screen cleared");
+    console.log(numberArray);
+    console.log(numberString);
+});
+
+
+calculator.appendChild(displayScreen);
+calculator.appendChild(allButtons);
+allButtons.appendChild(numberSection);
+allButtons.appendChild(column);
+numberSection.appendChild(firstRow);
+numberSection.appendChild(secondRow);
+numberSection.appendChild(thirdRow);
+numberSection.appendChild(fourthRow);
+column.appendChild(clearButton);
+column.appendChild(plusButton);
+column.appendChild(minusButton);
+column.appendChild(multiplyButton);
+column.appendChild(divideButton);
+column.appendChild(equalButton);
+firstRow.appendChild(oneButton);
+firstRow.appendChild(twoButton);
+firstRow.appendChild(threeButton);
+secondRow.appendChild(fourButton);
+secondRow.appendChild(fiveButton);
+secondRow.appendChild(sixButton);
+thirdRow.appendChild(sevenButton);
+thirdRow.appendChild(eightButton);
+thirdRow.appendChild(nineButton);
+fourthRow.appendChild(zeroButton);
