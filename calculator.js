@@ -30,8 +30,14 @@ const multiplyButton = document.getElementById("mult");
 const divideButton = document.getElementById("divi");
 const equalButton = document.getElementById("eql");
 
-const numberArray =[];
+const numberArray = [];
+const addArray = [];
+const subtractArray = [];
+let numberString;
+let sumation;
+let deduction;
 
+displayScreen.textContent = '0';
 
 function pressAnyButton() {
     allOfTheButtons.forEach((button) => {
@@ -52,31 +58,51 @@ function pressAnyButton() {
 };
 pressAnyButton();
 
-
-function displayNumberString() {
-    numberButton.forEach((button) => {
-        button.addEventListener('mousedown', () => {
-            numberArray.push(parseInt(button.textContent));
-            numberString = parseInt(numberArray.join(''));
-            displayScreen.textContent= numberString;
-        });
+numberButton.forEach((button) => {
+    button.addEventListener('mousedown', () => {
+        numberArray.push(parseInt(button.textContent));
+        numberString = parseInt(numberArray.join(''));
+        displayScreen.textContent= numberString;
     });
-};
-displayNumberString();
-
-// Create a function that clears the array to make a new number from a number-string
+});
 
 
-const add = function(a, b) {
+function add() {
+
     plusButton.addEventListener('mousedown', () => {
+        numberArray.length = 0;
+        addArray.push(parseInt(displayScreen.textContent));
+    });
+
+    equalButton.addEventListener('mousedown', () => {
+        addArray.push(parseInt(displayScreen.textContent));
+        sumation = addArray.reduce(function(a, b) {
+            return a + b;
+        });
+        displayScreen.textContent = sumation;
         
     });
-	//return parseInt(a) + parseInt(b);
 };
+add();
 
-const subtract = function(a, b) {
-	return parseInt(a) - parseInt(b);
+function subtract() {
+
+    minusButton.addEventListener('mousedown', () => {
+        numberArray.length = 0;
+        subtractArray.push(parseInt(displayScreen.textContent));
+    });
+
+    equalButton.addEventListener('mousedown', () => {
+        subtractArray.push(parseInt(displayScreen.textContent));
+        deduction = subtractArray.reduce(function(a, b) {
+            return a - b;
+        });
+        displayScreen.textContent = deduction;
+        
+    });
 };
+subtract();
+
 
 const sum = function(arr) {
   return arr.reduce((total, arg) => total + arg, 0);
@@ -88,6 +114,8 @@ const multiply = function(arr) {
 
 clearButton.addEventListener('click', () => {
     numberArray.length = 0;
+    addArray.length = 0;
+    subtractArray.length = 0;
     displayScreen.textContent = "0";
     console.log("Screen cleared");
     console.log(numberArray);
