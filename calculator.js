@@ -58,59 +58,62 @@ function pressAnyButton() {
 };
 pressAnyButton();
 
-numberButton.forEach((button) => {
-    button.addEventListener('mousedown', () => {
-        numberArray.push(parseInt(button.textContent));
-        numberString = parseInt(numberArray.join(''));
-        displayScreen.textContent= numberString;
+function enterNumber() {
+    numberButton.forEach((button) => {
+        button.addEventListener('mousedown', () => {
+            numberArray.push(parseInt(button.textContent));
+            numberString = parseInt(numberArray.join(''));
+            displayScreen.textContent = numberString;
+        });
     });
-});
+};
+enterNumber();
 
 
 function add() {
-
     plusButton.addEventListener('mousedown', () => {
         numberArray.length = 0;
-        addArray.push(parseInt(displayScreen.textContent));
+        addArray.push(displayScreen.textContent);
+        console.log("addArray: " + addArray);
     });
 
     equalButton.addEventListener('mousedown', () => {
-        addArray.push(parseInt(displayScreen.textContent));
+        addArray.push(displayScreen.textContent);
+        console.log("addArray: " + addArray);
+        numberArray.length = 0;
         sumation = addArray.reduce(function(a, b) {
-            return a + b;
+            return parseInt(a) + parseInt(b);
         });
-        displayScreen.textContent = sumation;
+        console.log("sum: " + sumation);
         
+        displayScreen.textContent = sumation;
+        addArray.length = 0;
     });
 };
 add();
 
 function subtract() {
-
     minusButton.addEventListener('mousedown', () => {
         numberArray.length = 0;
-        subtractArray.push(parseInt(displayScreen.textContent));
+        subtractArray.push(displayScreen.textContent);
+        console.log("subtractArray: " + subtractArray);
     });
 
     equalButton.addEventListener('mousedown', () => {
-        subtractArray.push(parseInt(displayScreen.textContent));
+        subtractArray.push(displayScreen.textContent);
+        console.log("subtractArray: " + subtractArray);
+        numberArray.length = 0;
         deduction = subtractArray.reduce(function(a, b) {
-            return a - b;
+            return parseInt(a) - parseInt(b);
         });
+        console.log("subtraction: " + deduction);
+
         displayScreen.textContent = deduction;
-        
+        subtractArray.length = 0;
     });
 };
 subtract();
 
-
-const sum = function(arr) {
-  return arr.reduce((total, arg) => total + arg, 0);
-};
-
-const multiply = function(arr) {
-  return arr.reduce((a, b) => parseInt(a) * parseInt(b));
-};
 
 clearButton.addEventListener('click', () => {
     numberArray.length = 0;
