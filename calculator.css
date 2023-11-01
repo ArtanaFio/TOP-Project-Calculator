@@ -50,8 +50,7 @@ body {
     gap: 0.5vw;
 }
 
-.button {
-    padding: 0.2vw;
+button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,11 +59,11 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 2vw;
     font-weight: bold;
+    border-radius: 10%;
     border-right: 0.4vw solid lightgrey;
     border-bottom: 0.4vw solid darkgrey;
     border-top: 0.4vw solid transparent;
     border-left: 0.4vw solid transparent;
-    border-radius: 10%;
 }
 
 .num {
@@ -73,6 +72,7 @@ body {
 }
 
 .non {
+    padding: 1em 1.5em;
     width: 5vw;
     height: 3vw;
 }

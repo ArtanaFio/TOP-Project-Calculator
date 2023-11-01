@@ -1,7 +1,7 @@
 const calculator = document.getElementById("calc");
         const displayScreen = document.getElementById("screen");
         const allButtons = document.querySelector(".all-buttons");
-        const allOfTheButtons = document.querySelectorAll(".button");
+        const allOfTheButtons = document.querySelectorAll("button");
         const numberSection = document.getElementById("nums");
         const numberButton = document.querySelectorAll(".num");
         const section = document.querySelector('section');
@@ -166,4 +166,3 @@ const calculator = document.getElementById("calc");
         thirdRow.appendChild(eightButton);
         thirdRow.appendChild(nineButton);
         fourthRow.appendChild(zeroButton);
-        section.appendChild(equationExpression);
