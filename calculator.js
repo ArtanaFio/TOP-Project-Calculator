@@ -73,18 +73,9 @@ const calculator = document.getElementById("calc");
             operationButton.forEach((button) => {
                 button.addEventListener('mousedown', () => {
                     numberArray.length = 0;
-                    calculateArray.push(parseInt(numberString));
+                    calculateArray.push(parseInt(displayScreen.textContent));
                 });
-            });
-
-            equalButton.addEventListener('mousedown', () => {
-                numberArray.length = 0;
-                calculateArray.push(parseInt(numberString));
-                numberString = '';
-                console.log("calculateArray elements: " + calculateArray);
-            });
-
-            
+            }); 
         };
         pressOperator();
 
@@ -93,11 +84,13 @@ const calculator = document.getElementById("calc");
                 button.addEventListener('mousedown', () => {
                     if (button.id == "add") {
                         equalButton.addEventListener('mousedown', () => {
+                            numberArray.length = 0;
+                            calculateArray.push(parseInt(numberString));
                             const add = calculateArray.reduce(function(a, b) {
                                 console.log(`${a} + ${b} = ${a + b}`);
-                                return a + b;
+                                displayScreen.textContent = a + b;
                             });
-                            displayScreen.textContent = add;
+                            add;
                             calculateArray.length = 0;
                         });
                     } else if (button.id == "sub") {
