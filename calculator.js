@@ -42,11 +42,12 @@ function pressAnyButton() {
     allOfTheButtons.forEach((button) => {
         button.addEventListener('mousedown', () => {
             // Remove "active" class from all buttons
-            allOfTheButtons.forEach((btn) => {
-                btn.classList.remove('active');
-            });
-            // Add "active" class to the clicked button
             button.classList.add('active');
+        });
+
+        button.addEventListener('mouseup', () => {
+            // Add "active" class to the clicked button
+            button.classList.remove('active');
         });
     });
 };
