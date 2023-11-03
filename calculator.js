@@ -41,17 +41,12 @@ let operator = null;
 function pressAnyButton() {
     allOfTheButtons.forEach((button) => {
         button.addEventListener('mousedown', () => {
-            button.style.borderTop = "0.4vw solid darkgrey"; 
-            button.style.borderLeft = "0.4vw solid lightgrey"; 
-            button.style.borderRight = "0.4vw solid transparent"; 
-            button.style.borderBottom = "0.4vw solid transparent";
-        });
-
-        button.addEventListener('mouseup', () => {
-            button.style.borderTop = "0.4vw solid transparent";
-            button.style.borderLeft = "0.4vw solid transparent";
-            button.style.borderRight = "0.4vw solid lightgrey";
-            button.style.borderBottom = "0.4vw solid darkgrey";
+            // Remove "active" class from all buttons
+            allOfTheButtons.forEach((btn) => {
+                btn.classList.remove('active');
+            });
+            // Add "active" class to the clicked button
+            button.classList.add('active');
         });
     });
 };
