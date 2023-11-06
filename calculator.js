@@ -35,6 +35,7 @@ const equalButton = document.getElementById("eql");
 
 let numberString = '';
 let firstNumber = null;
+let secondNumber = null;
 let operator = null;
 
 
@@ -68,8 +69,7 @@ numberButton.forEach((button) => {
         numberString += button.textContent;
         displayNumbers();
     });
-});
-        
+});        
 
 function operate() {
     operationButton.forEach((button) => {
@@ -93,14 +93,45 @@ function operate() {
                         console.log("dividing");
                     }
                     numberString = '';
-                } 
+                } else if (firstNumber !== null) {
+                    secondNumber = parseFloat(numberString);
+                    console.log(`secondNumber: ${secondNumber}`);
+                    if (operator === '+') {
+                        firstNumber += secondNumber;
+                    } else if (operator === '-') {
+                        firstNumber -= secondNumber;
+                    } else if (operator === '*') {
+                        firstNumber *= secondNumber;
+                    } else if (operator === '/' && secondNumber !== 0) {
+                        firstNumber /= secondNumber;
+                    } else if (operator === '/' && secondNumber === 0) {
+                        displayScreen.textContent = "Don't be contradictory";
+                        console.log(displayScreen.textContent);
+                        console.log(`firstNumber: ${firstNumber}`);
+                        console.log(`operator: ${operator}`);
+                        console.log(`secondNumber: ${secondNumber}`);
+                        console.log('*******************');
+                    }
+                    console.log(`new firstNumber: ${firstNumber}`);
+                    if (button.id === "add") {
+                        operator = '+';
+                    } else if (button.id === "sub") {
+                        operator = '-';
+                    } else if (button.id === "mult") {
+                        operator = '*';
+                    } else if (button.id === "divi") {
+                        operator = '/';
+                    }
+                    console.log(`new operator: ${operator}`);
+                    numberString = '';
+                }
             }
         });
     });            
 
     equalButton.addEventListener('mousedown', () => {
         if (firstNumber !== null && operator !== null && numberString !== '') {
-            const secondNumber = parseFloat(numberString);
+            secondNumber = parseFloat(numberString);
             console.log("secondNumber: " + secondNumber);
             let result;
             switch (operator) {
@@ -117,12 +148,18 @@ function operate() {
                     console.log(`${firstNumber} * ${secondNumber} = ${result}`);
                     break;
                 case '/':
-                    result = firstNumber / secondNumber;
-                    console.log(`${firstNumber} / ${secondNumber} = ${result}`);
-                    break;
+                    if (secondNumber === 0) {
+                        result = "Don't be contradictory";
+                        break;
+                    } else {
+                        result = firstNumber / secondNumber;
+                        console.log(`${firstNumber} / ${secondNumber} = ${result}`);
+                        break;
+                    }
             }
             numberString = result.toString();
             firstNumber = null;
+            secondNumber = null;
             operator = null;
             displayNumbers();
         }
@@ -133,6 +170,7 @@ operate();
 clearButton.addEventListener('mousedown', () => {
     numberString = '';
     firstNumber = null;
+    secondNumber = null;
     operator = null;
     displayNumbers();
     console.log("Everything cleared");
