@@ -4,50 +4,61 @@ body {
 
 #doc {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #calc {
-    padding: 3vw;
+    width: 20rem; /* 320px */
+    padding: 1.5rem;
     background-color: slategray;
     display: flex;
     flex-direction: column;
-    gap: 2vw;
-    border-bottom: 1.5vw solid darkgrey;
-    border-right: 1.5vw solid lightgrey;
+    gap: 2rem;
+    align-items: center;
+    border-bottom: 1rem solid darkgrey;
+    border-right: 1rem solid lightgrey;
+    border-radius: 5%;
 }
 
 #screen {
+    width: 100%;
+    padding: 0.625rem;
+    font-size: 2.5rem;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 600;
     text-align: right;
-    font-size: 3vw;
-    padding-right: 0.5em;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
     background-color: rgb(222, 245, 167);
     box-shadow: inset -3px -3px 10px lawngreen, inset 3px 3px 20px lawngreen;
 }
 
 .all-buttons {
     display: flex;
-    gap: 2vw;
+    gap: 1rem;
+    width: 100%;
+}
+
+#ops {
+    gap: 0.2rem;
 }
 
 #nums,
 #ops {
     display: flex;
     flex-direction: column;
-    gap: 0.5vw;
 }
 
 #nums {
     justify-content: center;
+    width: 80%;
+    gap: 0.5rem;
 }
 
 .row {
     display: flex;
+    flex: 1;
     justify-content: center;
-    gap: 0.5vw;
+    gap: 0.5rem;
 }
 
 button {
@@ -57,29 +68,27 @@ button {
     text-align: center;
     background: whitesmoke;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 2vw;
+    font-size: 2rem;
     font-weight: bold;
     border-radius: 10%;
-    border-right: 0.4vw solid lightgrey;
-    border-bottom: 0.4vw solid darkgrey;
-    border-top: 0.4vw solid transparent;
-    border-left: 0.4vw solid transparent;
+    border-right: 0.4rem solid lightgrey;
+    border-bottom: 0.4rem solid darkgrey;
+    border-top: 0.4rem solid transparent;
+    border-left: 0.4rem solid transparent;
 }
 
 button.active {
-    border-top: 0.4vw solid darkgrey; 
-    border-left: 0.4vw solid lightgrey; 
-    border-right: 0.4vw solid transparent; 
-    border-bottom: 0.4vw solid transparent;
+    border-top: 0.4rem solid darkgrey; 
+    border-left: 0.4rem solid lightgrey; 
+    border-right: 0.4rem solid transparent; 
+    border-bottom: 0.4rem solid transparent;
 }
 
 .num {
-    width: 4vw;
-    height: 4vw;
+    width: 3.5rem;
 }
 
 .non {
-    padding: 1em 1.5em;
-    width: 5vw;
-    height: 3vw;
+    color: grey;
+    
 }
