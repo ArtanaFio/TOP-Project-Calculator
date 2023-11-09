@@ -12,16 +12,18 @@ const secondRow = document.querySelector(".second");
 const thirdRow = document.querySelector(".third");
 const fourthRow = document.querySelector(".fourth");
 
-const oneButton= document.querySelector(".one");
-const twoButton= document.querySelector(".two");
-const threeButton= document.querySelector(".three");
-const fourButton= document.querySelector(".four");
-const fiveButton= document.querySelector(".five");
-const sixButton= document.querySelector(".six");
-const sevenButton= document.querySelector(".seven");
-const eightButton= document.querySelector(".eight");
-const nineButton= document.querySelector(".nine");
-const zeroButton= document.querySelector(".zero");
+const oneButton = document.querySelector(".one");
+const twoButton = document.querySelector(".two");
+const threeButton = document.querySelector(".three");
+const fourButton = document.querySelector(".four");
+const fiveButton = document.querySelector(".five");
+const sixButton = document.querySelector(".six");
+const sevenButton = document.querySelector(".seven");
+const eightButton = document.querySelector(".eight");
+const nineButton = document.querySelector(".nine");
+const zeroButton = document.querySelector(".zero");
+const decimalButton = document.querySelector(".decimal");
+const toggleButton = document.getElementById("sign");
         
 const nonNumbericalButton = document.querySelectorAll(".non");
 const operationButton = document.querySelectorAll(".opr");
@@ -69,7 +71,16 @@ numberButton.forEach((button) => {
         numberString += button.textContent;
         displayNumbers();
     });
-});        
+});
+
+decimalButton.addEventListener('mousedown', () => {
+    if (numberString === '') {
+        numberString += 0 + decimalButton.textContent;
+    } else {
+        numberString += decimalButton.textContent;
+    }
+    displayNumbers();
+});
 
 function operate() {
     operationButton.forEach((button) => {
@@ -200,3 +211,5 @@ thirdRow.appendChild(sevenButton);
 thirdRow.appendChild(eightButton);
 thirdRow.appendChild(nineButton);
 fourthRow.appendChild(zeroButton);
+fourthRow.appendChild(decimalButton);
+fourthRow.appendChild(toggleButton);

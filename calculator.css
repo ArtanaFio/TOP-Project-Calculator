@@ -84,11 +84,19 @@ button.active {
     border-bottom: 0.4rem solid transparent;
 }
 
-.num {
+.num,
+.plus-neg,
+.decimal {
     width: 3.5rem;
 }
 
-.non {
-    color: grey;
-    
+.non,
+.decimal,
+.plus-neg {
+    color: grey; 
+}
+
+.decimal,
+.plus-neg {
+    font-size: 1.5rem;
 }
