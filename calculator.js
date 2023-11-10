@@ -39,7 +39,15 @@ let numberString = '';
 let firstNumber = null;
 let secondNumber = null;
 let operator = null;
+let result = null;
 
+console.log("Before any calculation:");
+console.log(`numberString: ${numberString}`);
+console.log(`firstNumber: ${firstNumber}`);
+console.log(`secondNumber: ${secondNumber}`);
+console.log(`operator: ${operator}`);
+console.log(`result: ${result}`);
+console.log('');
 
 function pressAnyButton() {
     allOfTheButtons.forEach((button) => {
@@ -66,7 +74,13 @@ displayNumbers();
 // To enter numbers
 numberButton.forEach((button) => {
     button.addEventListener('mousedown', () => {
-        numberString += button.textContent;
+        if (result === null) {
+            numberString += button.textContent;
+        } else if (result !== null) {
+            numberString = '';
+            numberString += button.textContent;
+            result = null;
+        }
         displayNumbers();
     });
 });
@@ -85,7 +99,6 @@ decimalButton.addEventListener('mousedown', () => {
         decimalButton.disabled = true;
     });
 });
-
 
 toggleButton.addEventListener('mousedown', () => {
     if (numberString === '') {
@@ -127,27 +140,35 @@ function operate() {
                     secondNumber = parseFloat(numberString);
                     console.log(`secondNumber: ${secondNumber}`);
                     if (operator === '+') {
+                        console.log(`${firstNumber} + ${secondNumber}`);
                         firstNumber += secondNumber;
                     } else if (operator === '-') {
+                        console.log(`${firstNumber} - ${secondNumber}`);
                         firstNumber -= secondNumber;
                     } else if (operator === '*') {
+                        console.log(`${firstNumber} * ${secondNumber}`);
                         firstNumber *= secondNumber;
                     } else if (operator === '/' && secondNumber !== 0) {
+                        console.log(`${firstNumber} / ${secondNumber}`);
                         firstNumber /= secondNumber;
                     } else if (operator === '/' && secondNumber === 0) {
+                        console.log(`${firstNumber} / ${secondNumber}`);
                         displayScreen.textContent = "JUST NO";
                     }
                     console.log(`new firstNumber: ${firstNumber}`);
                     if (button.id === "add") {
                         operator = '+';
+                        console.log("adding");
                     } else if (button.id === "sub") {
                         operator = '-';
+                        console.log("subtracting");
                     } else if (button.id === "mult") {
                         operator = '*';
+                        console.log("multiplying");
                     } else if (button.id === "divi") {
                         operator = '/';
+                        console.log("dividing");
                     }
-                    console.log(`new operator: ${operator}`);
                     numberString = '';
                 }
             }
@@ -158,7 +179,6 @@ function operate() {
         if (firstNumber !== null && operator !== null && numberString !== '') {
             secondNumber = parseFloat(numberString);
             console.log("secondNumber: " + secondNumber);
-            let result;
             switch (operator) {
                 case '+':
                     result = firstNumber + secondNumber;
@@ -183,12 +203,18 @@ function operate() {
                     }
             }
             numberString = result.toString();
+            displayNumbers();
             firstNumber = null;
             secondNumber = null;
             operator = null;
-            displayNumbers();
             decimalButton.disabled = false;
             toggleButton.disabled = false;
+            console.log(`After = | numberString: ${numberString}`);
+            console.log(`After = | firstNumber: ${firstNumber}`);
+            console.log(`After = | operator: ${operator}`);
+            console.log(`After = | secondNumber: ${secondNumber}`);
+            console.log(`result: ${result}`);
+            console.log(``);
         }
     });
  
