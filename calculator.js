@@ -40,6 +40,7 @@ let firstNumber = null;
 let secondNumber = null;
 let operator = null;
 let result = null;
+let division = null;
 
 console.log("Before any calculation:");
 console.log(`numberString: ${numberString}`);
@@ -63,10 +64,12 @@ function pressAnyButton() {
 pressAnyButton();
 
 function displayNumbers() {
-    if (numberString === '') {
+    if (numberString.length === 0) {
         displayScreen.textContent = '0';
-    } else {
+    } else if (numberString.length <= 14) {
         displayScreen.textContent = numberString;
+    } else {
+        displayScreen.textContent = numberString.slice(0, 14);
     }
 };
 displayNumbers();
@@ -197,11 +200,13 @@ function operate() {
                         result = "JUST NO";
                         break;
                     } else {
-                        result = firstNumber / secondNumber;
+                        division = firstNumber / secondNumber;
+                        result = Number(division.toFixed(14));
                         console.log(`${firstNumber} / ${secondNumber} = ${result}`);
                         break;
                     }
             }
+
             numberString = result.toString();
             displayNumbers();
             firstNumber = null;
@@ -209,13 +214,15 @@ function operate() {
             operator = null;
             decimalButton.disabled = false;
             toggleButton.disabled = false;
-            console.log(`After = | numberString: ${numberString}`);
-            console.log(`After = | firstNumber: ${firstNumber}`);
-            console.log(`After = | operator: ${operator}`);
-            console.log(`After = | secondNumber: ${secondNumber}`);
-            console.log(`result: ${result}`);
-            console.log(``);
+        } else {
+            result = numberString;
         }
+        console.log(`After = | numberString: ${numberString}`);
+        console.log(`After = | firstNumber: ${firstNumber}`);
+        console.log(`After = | operator: ${operator}`);
+        console.log(`After = | secondNumber: ${secondNumber}`);
+        console.log(`result: ${result}`);
+        console.log(``);
     });
  
 };
