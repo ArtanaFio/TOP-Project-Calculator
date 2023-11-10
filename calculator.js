@@ -103,6 +103,7 @@ function operate() {
     operationButton.forEach((button) => {
         button.addEventListener('mousedown', () => {
             decimalButton.disabled = false;
+            toggleButton.disabled = false;
             if (numberString !== '') {
                 if (firstNumber === null) {
                     firstNumber = parseFloat(numberString);
@@ -191,6 +192,8 @@ function operate() {
             secondNumber = null;
             operator = null;
             displayNumbers();
+            decimalButton.disabled = false;
+            toggleButton.disabled = false;
         }
     });  
 };
@@ -202,6 +205,8 @@ clearButton.addEventListener('mousedown', () => {
     secondNumber = null;
     operator = null;
     displayNumbers();
+    decimalButton.disabled = false;
+    toggleButton.disabled = false;
     console.log("Everything cleared");
 });
 
