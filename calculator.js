@@ -135,12 +135,7 @@ function operate() {
                     } else if (operator === '/' && secondNumber !== 0) {
                         firstNumber /= secondNumber;
                     } else if (operator === '/' && secondNumber === 0) {
-                        displayScreen.textContent = "Don't be contradictory";
-                        console.log(displayScreen.textContent);
-                        console.log(`firstNumber: ${firstNumber}`);
-                        console.log(`operator: ${operator}`);
-                        console.log(`secondNumber: ${secondNumber}`);
-                        console.log('*******************');
+                        displayScreen.textContent = "JUST NO";
                     }
                     console.log(`new firstNumber: ${firstNumber}`);
                     if (button.id === "add") {
@@ -179,7 +174,7 @@ function operate() {
                     break;
                 case '/':
                     if (secondNumber === 0) {
-                        result = "Don't be contradictory";
+                        result = "JUST NO";
                         break;
                     } else {
                         result = firstNumber / secondNumber;
@@ -195,7 +190,8 @@ function operate() {
             decimalButton.disabled = false;
             toggleButton.disabled = false;
         }
-    });  
+    });
+ 
 };
 operate();
 
