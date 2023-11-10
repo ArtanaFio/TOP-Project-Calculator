@@ -44,12 +44,10 @@ let operator = null;
 function pressAnyButton() {
     allOfTheButtons.forEach((button) => {
         button.addEventListener('mousedown', () => {
-            // Remove "active" class from all buttons
             button.classList.add('active');
         });
 
         button.addEventListener('mouseup', () => {
-            // Add "active" class to the clicked button
             button.classList.remove('active');
         });
     });
@@ -80,11 +78,31 @@ decimalButton.addEventListener('mousedown', () => {
         numberString += decimalButton.textContent;
     }
     displayNumbers();
+
+    decimalButton.addEventListener('mouseup', () => {
+        // Returns default style to button before disabling button
+        decimalButton.classList.remove('active');
+        decimalButton.disabled = true;
+    });
+});
+
+
+toggleButton.addEventListener('mousedown', () => {
+    if (numberString === '') {
+        numberString += '-';
+
+        toggleButton.addEventListener('mouseup', () => {
+            // Returns default style to button before disabling button
+            toggleButton.classList.remove('active');
+            toggleButton.disabled = true;
+        });
+    }
 });
 
 function operate() {
     operationButton.forEach((button) => {
         button.addEventListener('mousedown', () => {
+            decimalButton.disabled = false;
             if (numberString !== '') {
                 if (firstNumber === null) {
                     firstNumber = parseFloat(numberString);
