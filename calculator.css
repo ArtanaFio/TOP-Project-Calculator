@@ -1,5 +1,14 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 25px;
 }
 
 #doc {
@@ -9,37 +18,35 @@ body {
 }
 
 #calc {
-    width: 20rem; /* 320px */
+    width: min(90%, 20rem);
     padding: 1.5rem;
-    background-color: slategray;
+    background-color: purple;
+    background-image: linear-gradient(purple, indigo);
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
-    border-bottom: 1rem solid darkgrey;
-    border-right: 1rem solid lightgrey;
+    border-bottom: 3vmin solid purple;
+    border-right: 3vmin solid rgb(182, 0, 182);
     border-radius: 5%;
 }
 
 #screen {
     width: 100%;
-    padding: 0.625rem;
-    font-size: 2.5rem;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 1vmin/*0.625rem*/;
+    font-size: 7vmin;
+    font-family:'Kelly Slab', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: 600;
     text-align: right;
     background-color: rgb(222, 245, 167);
     box-shadow: inset -3px -3px 10px lawngreen, inset 3px 3px 20px lawngreen;
+    overflow: hidden;
 }
 
 .all-buttons {
     display: flex;
-    gap: 1rem;
     width: 100%;
-}
-
-#ops {
-    gap: 0.2rem;
+    gap: 5vmin;
 }
 
 #nums,
@@ -48,17 +55,21 @@ body {
     flex-direction: column;
 }
 
+#ops {
+    gap: 0;
+    width: 30%;
+}
+
 #nums {
     justify-content: center;
     width: 80%;
-    gap: 0.5rem;
+    gap: 3vmin;
 }
 
 .row {
-    display: flex;
     flex: 1;
-    justify-content: center;
-    gap: 0.5rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 button {
@@ -66,13 +77,12 @@ button {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: whitesmoke;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 2rem;
+    background-color:rgb(255, 184, 251);
+    font-family:'Thasadith', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bold;
     border-radius: 10%;
-    border-right: 0.4rem solid lightgrey;
-    border-bottom: 0.4rem solid darkgrey;
+    border-right: 0.4rem solid orchid;
+    border-bottom: 0.4rem solid mediumorchid;
     border-top: 0.4rem solid transparent;
     border-left: 0.4rem solid transparent;
 }
@@ -87,16 +97,19 @@ button.active {
 .num,
 .plus-neg,
 .decimal {
-    width: 3.5rem;
+    width: 30%;
+    height: 100%;
+    color: purple;
 }
 
 .non,
 .decimal,
 .plus-neg {
-    color: grey; 
+    color: rgb(173, 60, 201); 
+    padding: 1vmin;
+    font-size: 5vmin;
 }
 
-.decimal,
-.plus-neg {
-    font-size: 1.5rem;
+.num {
+    font-size: 6vmin;
 }
