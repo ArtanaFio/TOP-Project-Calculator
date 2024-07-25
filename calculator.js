@@ -124,21 +124,6 @@ function operate() {
                 if (firstNumber === null) {
                     firstNumber = parseFloat(numberString);
                     console.log("firstNumber: " + firstNumber);
-                    displayNumbers();
-                    if (button.id == "add") {
-                        operator = '+';
-                        console.log("adding");
-                    } else if (button.id == "sub") {
-                        operator = '-';
-                        console.log("subtracting");
-                    } else if (button.id == "mult") {
-                        operator = '*';
-                        console.log("multiplying");
-                    } else if (button.id == "divi") {
-                        operator = '/';
-                        console.log("dividing");
-                    }
-                    numberString = '';
                 } else if (firstNumber !== null) {
                     secondNumber = parseFloat(numberString);
                     console.log(`secondNumber: ${secondNumber}`);
@@ -157,23 +142,28 @@ function operate() {
                     } else if (operator === '/' && secondNumber === 0) {
                         console.log(`${firstNumber} / ${secondNumber}`);
                         displayScreen.textContent = "JUST NO";
+                        firstNumber = null;
+                        numberString = '';
+                        return;
                     }
+                    numberString = firstNumber.toString();
+                    displayNumbers();
                     console.log(`new firstNumber: ${firstNumber}`);
-                    if (button.id === "add") {
-                        operator = '+';
-                        console.log("adding");
-                    } else if (button.id === "sub") {
-                        operator = '-';
-                        console.log("subtracting");
-                    } else if (button.id === "mult") {
-                        operator = '*';
-                        console.log("multiplying");
-                    } else if (button.id === "divi") {
-                        operator = '/';
-                        console.log("dividing");
-                    }
-                    numberString = '';
                 }
+                numberString = '';
+            }
+            if (button.id == "add") {
+                operator = '+';
+                console.log("adding");
+            } else if (button.id == "sub") {
+                operator = '-';
+                console.log("subtracting");
+            } else if (button.id == "mult") {
+                operator = '*';
+                console.log("multiplying");
+            } else if (button.id == "divi") {
+                operator = '/';
+                console.log("dividing");
             }
         });
     });            
