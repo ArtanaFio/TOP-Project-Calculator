@@ -1,7 +1,7 @@
 const calculator = document.getElementById("calc");
 const displayScreen = document.getElementById("screen");
 const allButtons = document.querySelector(".all-buttons");
-const allOfTheButtons = document.querySelectorAll("button");
+
 const numberSection = document.getElementById("nums");
 const numberButton = document.querySelectorAll(".num");
 const section = document.querySelector('section');
@@ -51,6 +51,7 @@ console.log(`result: ${result}`);
 console.log('');
 
 function pressAnyButton() {
+    const allOfTheButtons = document.querySelectorAll("button");
     allOfTheButtons.forEach((button) => {
         button.addEventListener('mousedown', () => {
             button.classList.add('active');
@@ -75,45 +76,82 @@ function displayNumbers() {
 displayNumbers();
 
 // To enter numbers
-numberButton.forEach((button) => {
-    button.addEventListener('mousedown', () => {
-        if (result === null) {
-            numberString += button.textContent;
-        } else if (result !== null) {
-            numberString = '';
-            numberString += button.textContent;
-            result = null;
+
+function enterNumbers() {
+    numberButton.forEach((button) => {
+        button.addEventListener('mousedown', () => {
+            if (result === null) {
+                numberString += button.textContent;
+            } else if (result !== null) {
+                numberString = '';
+                numberString += button.textContent;
+                result = null;
+            }
+            displayNumbers();
+        });
+    });
+
+    document.addEventListener('keydown', event => {
+        const numberKey = event.key;
+        switch (numberKey) {
+            case '0':
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+            case '8':
+            case '9':
+                if (result === null) {
+                    numberString += numberKey;
+                } else if (result !== null) {
+                    numberString = '';
+                    numberString += numberKey;
+                    result = null;
+                }
+                displayNumbers();
+                console.log(numberString);
+                break;
+            case '.':
+                if(!numberString.includes('.')) {
+                    numberString += '.';
+                    displayNumbers();
+                    console.log(numberString);
+                }
+                break;
+        }
+    });
+
+    decimalButton.addEventListener('mousedown', () => {
+        if (numberString === '') {
+            numberString += 0 + decimalButton.textContent;
+        } else {
+            numberString += decimalButton.textContent;
         }
         displayNumbers();
-    });
-});
-
-decimalButton.addEventListener('mousedown', () => {
-    if (numberString === '') {
-        numberString += 0 + decimalButton.textContent;
-    } else {
-        numberString += decimalButton.textContent;
-    }
-    displayNumbers();
-
-    decimalButton.addEventListener('mouseup', () => {
-        // Returns default style to button before disabling button
-        decimalButton.classList.remove('active');
-        decimalButton.disabled = true;
-    });
-});
-
-toggleButton.addEventListener('mousedown', () => {
-    if (numberString === '') {
-        numberString += '-';
-
-        toggleButton.addEventListener('mouseup', () => {
+    
+        decimalButton.addEventListener('mouseup', () => {
             // Returns default style to button before disabling button
-            toggleButton.classList.remove('active');
-            toggleButton.disabled = true;
+            decimalButton.classList.remove('active');
+            decimalButton.disabled = true;
         });
-    }
-});
+    });
+
+    toggleButton.addEventListener('mousedown', () => {
+        if (numberString === '') {
+            numberString += '-';
+    
+            toggleButton.addEventListener('mouseup', () => {
+                // Returns default style to button before disabling button
+                toggleButton.classList.remove('active');
+                toggleButton.disabled = true;
+            });
+        }
+    });
+};
+enterNumbers();
 
 function operate() {
     operationButton.forEach((button) => {
@@ -207,10 +245,7 @@ function operate() {
         } else {
             result = numberString;
         }
-        console.log(`After = | numberString: ${numberString}`);
-        console.log(`After = | firstNumber: ${firstNumber}`);
-        console.log(`After = | operator: ${operator}`);
-        console.log(`After = | secondNumber: ${secondNumber}`);
+        console.log(`After = | numberString: ${numberString}, firstNumber: ${firstNumber}, operator: ${operator}, secondNumber: ${secondNumber}`);
         console.log(`result: ${result}`);
         console.log(``);
     });
