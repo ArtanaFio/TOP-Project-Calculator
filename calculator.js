@@ -76,7 +76,6 @@ function displayNumbers() {
 displayNumbers();
 
 // To enter numbers
-
 function enterNumbers() {
     numberButton.forEach((button) => {
         button.addEventListener('mousedown', () => {
@@ -253,16 +252,20 @@ function operate() {
 };
 operate();
 
-clearButton.addEventListener('mousedown', () => {
-    numberString = '';
-    firstNumber = null;
-    secondNumber = null;
-    operator = null;
-    displayNumbers();
-    decimalButton.disabled = false;
-    toggleButton.disabled = false;
-    console.log("Everything cleared");
-});
+function clearCalculator() {
+    clearButton.addEventListener('mousedown', () => {
+        numberString = '';
+        firstNumber = null;
+        secondNumber = null;
+        operator = null;
+        displayNumbers();
+        decimalButton.disabled = false;
+        toggleButton.disabled = false;
+        console.log("Everything cleared");
+    });
+};
+clearCalculator();
+
 
 calculator.appendChild(displayScreen);
 calculator.appendChild(allButtons);
