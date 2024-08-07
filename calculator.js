@@ -186,73 +186,94 @@ function operate() {
     }
 };
 
-    operationButton.forEach((button) => {
-        button.addEventListener('mousedown', () => {
-            decimalButton.disabled = false;
-            toggleButton.disabled = false;
-            if (numberString !== '') {
-                if (firstNumber === null) {
-                    firstNumber = parseFloat(numberString);
-                    console.log("firstNumber: " + firstNumber);
-                } else if (firstNumber !== null) {
-                    secondNumber = parseFloat(numberString);
-                    console.log(`secondNumber: ${secondNumber}`);
+function setValues() {
+    if (firstNumber === null && numberString !== "JUST NO") {
+        firstNumber = parseFloat(numberString);
+        console.log("firstNumber: " + firstNumber);
+    } else if (firstNumber !== null) {
+        secondNumber = parseFloat(numberString);
+        console.log(`secondNumber: ${secondNumber}`);
 
-                    if (operate() === 'JUST NO') {
-                        numberString = operate();
-                        firstNumber;
-                    } else {
-                        firstNumber = parseFloat(operate());
-                        numberString = firstNumber.toString();
-                        displayNumbers();
-                    }
-                    console.log(`=`);
-                    console.log(`new firstNumber: ${firstNumber}`);
-                }
-                if (button.id == "add") {
-                    operator = '+';
-                    console.log("adding");
-                } else if (button.id == "sub") {
-                    operator = '-';
-                    console.log("subtracting");
-                } else if (button.id == "mult") {
-                    operator = '*';
-                    console.log("multiplying");
-                } else if (button.id == "divi") {
-                    operator = '/';
-                    console.log("dividing");
-                }
-                displayNumbers();
-                numberString = '';
-            }
-        });
-    });            
-
-    equalButton.addEventListener('mousedown', () => {
-        if (firstNumber !== null && operator !== null && numberString !== '') {
-            secondNumber = parseFloat(numberString);
-            console.log("secondNumber: " + secondNumber);
-            result = parseFloat(operate());
-            if (operate() === "JUST NO") {
-                numberString = operate();
-            } else {
-                result = parseFloat(operate());
-                numberString = result.toString();
-            }
-            displayNumbers();
-            firstNumber = null;
-            secondNumber = null;
-            operator = null;
-            decimalButton.disabled = false;
-            toggleButton.disabled = false;
+        if (operate() === 'JUST NO') {
+            numberString = operate();
+            firstNumber;
         } else {
-            result = numberString;
+            firstNumber = parseFloat(operate());
+            numberString = firstNumber.toString();
+            displayNumbers();
         }
-        console.log("=");
-        console.log(`result: ${result}`);
-        console.log(`After = | numberString: ${numberString}, firstNumber: ${firstNumber}, operator: ${operator}, secondNumber: ${secondNumber}`);
-        console.log(``);
+        console.log(`=`);
+        console.log(`new firstNumber: ${firstNumber}`);
+    } else if (numberString === "JUST NO") {
+        numberString = '';
+    }
+};
+
+operationButton.forEach((button) => {
+    button.addEventListener('mousedown', () => {
+        decimalButton.disabled = false;
+        toggleButton.disabled = false;
+                
+        setValues();
+
+        if (button.id == "add") {
+            operator = '+';
+            console.log("adding");
+        } else if (button.id == "sub") {
+            operator = '-';
+            console.log("subtracting");
+        } else if (button.id == "mult") {
+            operator = '*';
+            console.log("multiplying");
+        } else if (button.id == "divi") {
+            operator = '/';
+            console.log("dividing");
+        }
+        displayNumbers();
+        numberString = '';
     });
+});
+    
+document.addEventListener('keydown', event => {
+    const operatorKey = event.key;
+    switch (operatorKey) {
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+    }
+});
+
+function getResults() {
+    if (firstNumber !== null && operator !== null && numberString !== '') {
+        secondNumber = parseFloat(numberString);
+        console.log("secondNumber: " + secondNumber);
+        result = parseFloat(operate());
+        if (operate() === "JUST NO") {
+            numberString = operate();
+            result = null;
+        } else {
+            result = parseFloat(operate());
+            numberString = result.toString();
+        }
+        displayNumbers();
+        firstNumber = null;
+        secondNumber = null;
+        operator = null;
+        decimalButton.disabled = false;
+        toggleButton.disabled = false;
+    } else {
+        result = numberString;
+    }
+    console.log("=");
+    console.log(`result: ${result}`);
+    console.log(`After = | numberString: ${numberString}, firstNumber: ${firstNumber}, operator: ${operator}, secondNumber: ${secondNumber}`);
+    console.log(``);
+};
+
+equalButton.addEventListener('mousedown', () => {
+    getResults();
+});
 
 function clearCalculator() {
     clearButton.addEventListener('mousedown', () => {
