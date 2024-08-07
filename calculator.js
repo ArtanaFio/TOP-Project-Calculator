@@ -69,7 +69,7 @@ function displayNumbers() {
         displayScreen.textContent = '0';
     } else if (numberString.length <= 14) {
         displayScreen.textContent = numberString;
-    } else {
+    } else if (numberString.length > 14) {
         displayScreen.textContent = numberString.slice(0, 14);
     }
 };
@@ -153,6 +153,39 @@ function enterNumbers() {
 enterNumbers();
 
 function operate() {
+    function addNumbers(a, b) {
+        return a += b;
+    };
+
+    function subtractNumbers(a, b) {
+        return a -= b;
+    };
+
+    function multiplyNumbers(a, b) {
+        return a *= b;
+    }
+
+    function divideNumbers(a, b) {
+        if (b !== 0) {
+            return a /= b;
+        } else {
+            firstNumber = null;
+            numberString = '';
+            return "JUST NO";
+        }
+    }
+
+    if (operator === '+') {
+        return addNumbers(firstNumber, secondNumber);
+    } else if (operator === '-') {
+        return subtractNumbers(firstNumber, secondNumber);
+    } else if (operator === '*') {
+        return multiplyNumbers(firstNumber, secondNumber);
+    } else if (operator === '/') {
+        return divideNumbers(firstNumber, secondNumber);
+    }
+};
+
     operationButton.forEach((button) => {
         button.addEventListener('mousedown', () => {
             decimalButton.disabled = false;
@@ -164,43 +197,33 @@ function operate() {
                 } else if (firstNumber !== null) {
                     secondNumber = parseFloat(numberString);
                     console.log(`secondNumber: ${secondNumber}`);
-                    if (operator === '+') {
-                        console.log(`${firstNumber} + ${secondNumber}`);
-                        firstNumber += secondNumber;
-                    } else if (operator === '-') {
-                        console.log(`${firstNumber} - ${secondNumber}`);
-                        firstNumber -= secondNumber;
-                    } else if (operator === '*') {
-                        console.log(`${firstNumber} * ${secondNumber}`);
-                        firstNumber *= secondNumber;
-                    } else if (operator === '/' && secondNumber !== 0) {
-                        console.log(`${firstNumber} / ${secondNumber}`);
-                        firstNumber /= secondNumber;
-                    } else if (operator === '/' && secondNumber === 0) {
-                        console.log(`${firstNumber} / ${secondNumber}`);
-                        displayScreen.textContent = "JUST NO";
-                        firstNumber = null;
-                        numberString = '';
-                        return;
+
+                    if (operate() === 'JUST NO') {
+                        numberString = operate();
+                        firstNumber;
+                    } else {
+                        firstNumber = parseFloat(operate());
+                        numberString = firstNumber.toString();
+                        displayNumbers();
                     }
-                    numberString = firstNumber.toString();
-                    displayNumbers();
+                    console.log(`=`);
                     console.log(`new firstNumber: ${firstNumber}`);
                 }
+                if (button.id == "add") {
+                    operator = '+';
+                    console.log("adding");
+                } else if (button.id == "sub") {
+                    operator = '-';
+                    console.log("subtracting");
+                } else if (button.id == "mult") {
+                    operator = '*';
+                    console.log("multiplying");
+                } else if (button.id == "divi") {
+                    operator = '/';
+                    console.log("dividing");
+                }
+                displayNumbers();
                 numberString = '';
-            }
-            if (button.id == "add") {
-                operator = '+';
-                console.log("adding");
-            } else if (button.id == "sub") {
-                operator = '-';
-                console.log("subtracting");
-            } else if (button.id == "mult") {
-                operator = '*';
-                console.log("multiplying");
-            } else if (button.id == "divi") {
-                operator = '/';
-                console.log("dividing");
             }
         });
     });            
@@ -209,32 +232,13 @@ function operate() {
         if (firstNumber !== null && operator !== null && numberString !== '') {
             secondNumber = parseFloat(numberString);
             console.log("secondNumber: " + secondNumber);
-            switch (operator) {
-                case '+':
-                    result = firstNumber + secondNumber;
-                    console.log(`${firstNumber} + ${secondNumber} = ${result}`);
-                    break;
-                case '-':
-                    result = firstNumber - secondNumber;
-                    console.log(`${firstNumber} - ${secondNumber} = ${result}`);
-                    break;
-                case '*':
-                    result = firstNumber * secondNumber;
-                    console.log(`${firstNumber} * ${secondNumber} = ${result}`);
-                    break;
-                case '/':
-                    if (secondNumber === 0) {
-                        result = "JUST NO";
-                        break;
-                    } else {
-                        division = firstNumber / secondNumber;
-                        result = Number(division.toFixed(14));
-                        console.log(`${firstNumber} / ${secondNumber} = ${result}`);
-                        break;
-                    }
+            result = parseFloat(operate());
+            if (operate() === "JUST NO") {
+                numberString = operate();
+            } else {
+                result = parseFloat(operate());
+                numberString = result.toString();
             }
-
-            numberString = result.toString();
             displayNumbers();
             firstNumber = null;
             secondNumber = null;
@@ -244,13 +248,11 @@ function operate() {
         } else {
             result = numberString;
         }
-        console.log(`After = | numberString: ${numberString}, firstNumber: ${firstNumber}, operator: ${operator}, secondNumber: ${secondNumber}`);
+        console.log("=");
         console.log(`result: ${result}`);
+        console.log(`After = | numberString: ${numberString}, firstNumber: ${firstNumber}, operator: ${operator}, secondNumber: ${secondNumber}`);
         console.log(``);
     });
- 
-};
-operate();
 
 function clearCalculator() {
     clearButton.addEventListener('mousedown', () => {
