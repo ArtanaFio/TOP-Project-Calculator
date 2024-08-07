@@ -42,14 +42,6 @@ let operator = null;
 let result = null;
 let division = null;
 
-console.log("Before any calculation:");
-console.log(`numberString: ${numberString}`);
-console.log(`firstNumber: ${firstNumber}`);
-console.log(`secondNumber: ${secondNumber}`);
-console.log(`operator: ${operator}`);
-console.log(`result: ${result}`);
-console.log('');
-
 function pressAnyButton() {
     const allOfTheButtons = document.querySelectorAll("button");
     allOfTheButtons.forEach((button) => {
@@ -111,13 +103,11 @@ function enterNumbers() {
                     result = null;
                 }
                 displayNumbers();
-                console.log(numberString);
                 break;
             case '.':
                 if(!numberString.includes('.')) {
                     numberString += '.';
                     displayNumbers();
-                    console.log(numberString);
                 }
                 break;
         }
@@ -189,11 +179,8 @@ function operate() {
 function setValues() {
     if (firstNumber === null && numberString !== "JUST NO") {
         firstNumber = parseFloat(numberString);
-        console.log("firstNumber: " + firstNumber);
     } else if (firstNumber !== null) {
         secondNumber = parseFloat(numberString);
-        console.log(`secondNumber: ${secondNumber}`);
-
         if (operate() === 'JUST NO') {
             numberString = operate();
             firstNumber;
@@ -202,10 +189,30 @@ function setValues() {
             numberString = firstNumber.toString();
             displayNumbers();
         }
-        console.log(`=`);
-        console.log(`new firstNumber: ${firstNumber}`);
     } else if (numberString === "JUST NO") {
         numberString = '';
+    }
+};
+
+function getResults() {
+    if (firstNumber !== null && operator !== null && numberString !== '') {
+        secondNumber = parseFloat(numberString);
+        result = parseFloat(operate());
+        if (operate() === "JUST NO") {
+            numberString = operate();
+            result = null;
+        } else {
+            result = parseFloat(operate());
+            numberString = result.toString();
+        }
+        displayNumbers();
+        firstNumber = null;
+        secondNumber = null;
+        operator = null;
+        decimalButton.disabled = false;
+        toggleButton.disabled = false;
+    } else {
+        result = numberString;
     }
 };
 
@@ -233,43 +240,54 @@ operationButton.forEach((button) => {
         numberString = '';
     });
 });
-    
+
 document.addEventListener('keydown', event => {
     const operatorKey = event.key;
     switch (operatorKey) {
         case '+':
+            setValues();
+            operator = '+';
+            console.log("adding");
+            displayNumbers();
+            numberString = '';
+            break;
         case '-':
+            setValues();
+            operator = '-';
+            console.log("subtracting");
+            displayNumbers();
+            numberString = '';
+            break;
         case '*':
+            setValues();
+            operator = '*';
+            console.log("multiplying");
+            displayNumbers();
+            numberString = '';
+            break;
         case '/':
+            setValues();
+            operator = '/';
+            console.log("dividing");
+            displayNumbers();
+            numberString = '';
+            break;
+        case '=':
+            getResults();
+            numberString = result;
+            displayNumbers();
+        case 'Enter':
+            getResults();
+            numberString = result;
+            displayNumbers();
+        case 'Backspace':
+            if (numberString.length > 0) {
+                numberString = numberString.slice(0, -1);
+                displayNumbers();12
+            }
+            break;
     }
 });
-
-function getResults() {
-    if (firstNumber !== null && operator !== null && numberString !== '') {
-        secondNumber = parseFloat(numberString);
-        console.log("secondNumber: " + secondNumber);
-        result = parseFloat(operate());
-        if (operate() === "JUST NO") {
-            numberString = operate();
-            result = null;
-        } else {
-            result = parseFloat(operate());
-            numberString = result.toString();
-        }
-        displayNumbers();
-        firstNumber = null;
-        secondNumber = null;
-        operator = null;
-        decimalButton.disabled = false;
-        toggleButton.disabled = false;
-    } else {
-        result = numberString;
-    }
-    console.log("=");
-    console.log(`result: ${result}`);
-    console.log(`After = | numberString: ${numberString}, firstNumber: ${firstNumber}, operator: ${operator}, secondNumber: ${secondNumber}`);
-    console.log(``);
-};
 
 equalButton.addEventListener('mousedown', () => {
     getResults();
@@ -288,31 +306,3 @@ function clearCalculator() {
     });
 };
 clearCalculator();
-
-
-calculator.appendChild(displayScreen);
-calculator.appendChild(allButtons);
-allButtons.appendChild(numberSection);
-allButtons.appendChild(column);
-numberSection.appendChild(firstRow);
-numberSection.appendChild(secondRow);
-numberSection.appendChild(thirdRow);
-numberSection.appendChild(fourthRow);
-column.appendChild(clearButton);
-column.appendChild(plusButton);
-column.appendChild(minusButton);
-column.appendChild(multiplyButton);
-column.appendChild(divideButton);
-column.appendChild(equalButton);
-firstRow.appendChild(oneButton);
-firstRow.appendChild(twoButton);
-firstRow.appendChild(threeButton);
-secondRow.appendChild(fourButton);
-secondRow.appendChild(fiveButton);
-secondRow.appendChild(sixButton);
-thirdRow.appendChild(sevenButton);
-thirdRow.appendChild(eightButton);
-thirdRow.appendChild(nineButton);
-fourthRow.appendChild(zeroButton);
-fourthRow.appendChild(decimalButton);
-fourthRow.appendChild(toggleButton);

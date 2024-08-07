@@ -9,7 +9,6 @@ On-screen calculator programmed with JavaScript, HTML, and CSS. Uses functions t
 - [Project Structure] (#project-structure)
 - [Instructions] (#instructions)
 - [Acknowledgments] (#acknowledgments)
-- [Deverloper Notes] (#developer-notes)
 
 ## Technologies Used
 - HTML5
@@ -50,10 +49,6 @@ TOP-Project-Calculator/
 
 ## Acknowledgments
 - **Fonts:**
-    - Kelly Slab, https://fonts.google.com/specimen/Kelly+Slab/about?query=kelly by Denis Masharov
-    - Thasadith, https://fonts.google.com/specimen/Thasadith/about?preview.text=0123456789&classification=Display by Cadon Demak
-
-## Developer Notes
-Ongoing issues to address:
-- Include a "backspace" button to undo typos.
-- Include keyboard support.
+    - Kelly Slab, https://fonts.google.com/specimen/Kelly+Slab by Denis Masharov
+    - Thasadith, https://fonts.google.com/specimen/Thasadith by Cadon Demak
+    - Bebas Neue, https://fonts.google.com/specimen/Bebas+Neue by Ryoichi Tsunekawa
