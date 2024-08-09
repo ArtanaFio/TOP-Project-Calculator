@@ -32,13 +32,13 @@ h1 {
 }
 
 #calc {
-    width: min(90%, 20rem);
-    padding: 1.5rem;
+    width: min(80%, 15rem);
+    padding: 4vmin;
     background-color: purple;
     background-image: linear-gradient(purple, indigo);
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 3vmin;
     align-items: center;
     border-bottom: 3vmin solid purple;
     border-right: 3vmin solid rgb(182, 0, 182);
@@ -60,7 +60,7 @@ h1 {
 .all-buttons {
     display: flex;
     width: 100%;
-    gap: 5vmin;
+    gap: 3vmin;
 }
 
 #nums,
@@ -70,14 +70,14 @@ h1 {
 }
 
 #ops {
-    gap: 0;
+    gap: 5px;
     width: 30%;
 }
 
 #nums {
     justify-content: center;
-    width: 80%;
-    gap: 3vmin;
+    width: 70%;
+    gap: 5vmin;
 }
 
 .row {
@@ -121,9 +121,45 @@ button.active {
 .plus-neg {
     color: rgb(173, 60, 201); 
     padding: 1vmin;
-    font-size: 5vmin;
+    font-size: 3.5vmin;
 }
 
 .num {
-    font-size: 6vmin;
+    font-size: 5vmin;
+}
+
+p {
+    margin: 3vmin;
+    padding: 10px;
+    color: mediumorchid;
+    background-color: black;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    line-height: 50px;
+}
+
+.key {
+    padding: 2px;
+    background-color:rgb(255, 184, 251);
+    border-radius: 10%;
+    border-right: 5px solid orchid;
+    border-bottom: 5px solid mediumorchid;
+    border-top: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+
+footer {
+    margin-top: 3vmin;
+    font-size: 0.75rem;
+    width: 100%;
+    text-align: center;
+    font-style: italic;
+    color: white;
+    padding: 10px;
+    background-color: rgba(128, 0, 128, 0.25);
+}
+
+a {
+    color: mediumorchid;
 }
